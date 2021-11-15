@@ -9,7 +9,7 @@ Once you have an org, you can go to developer.webex.com and login using your org
 Then click on "Documentation".
 On the left hand side you have the list of APIs. Click on "Full API Reference" and then on any of the APIs. On the API page, right hand side, copy the "Bearer".
 
-![](/Users/lpellegr/Desktop/Screenshot 2021-11-15 at 16.13.24.png)
+<img src="/Users/lpellegr/Desktop/Screenshot 2021-11-15 at 16.13.24.png"/>
 
 This is a limited-duration access token that you can paste in the "credentials" file. 
 After 12 hours this token is no longer valid and you have to grab a new one from the same web page.
