@@ -7,11 +7,12 @@ Just log into dcloud and look for "Cisco Webex Calling v3" lab.
 
 Once you have an org, you can go to developer.webex.com and login using your org admin credentials.
 Then click on "Documentation".
-
-<img alt="img.png" src="img.png"/>
-
 On the left hand side you have the list of APIs. Click on "Full API Reference" and then on any of the APIs. On the API page, right hand side, copy the "Bearer".
-This is a limited-duration access token that you can paste in the "credentials" file. After 12 hours this token is no longer valid and you have to grab a new one from the same web page.
+
+![](/Users/lpellegr/Desktop/Screenshot 2021-11-15 at 16.13.24.png)
+
+This is a limited-duration access token that you can paste in the "credentials" file. 
+After 12 hours this token is no longer valid and you have to grab a new one from the same web page.
 A full OAuth flow will automatically renew access token before they expire, but this is out of the scope of these scripts.
 
 Next, create an Excel spreadsheet by populating the first row with the queue name (i.e. "Queue1", "Queue2"), and include the agent's email under the specific queue.
