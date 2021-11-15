@@ -8,6 +8,8 @@ Just log into dcloud and look for "Cisco Webex Calling v3" lab.
 Once you have an org, you can go to developer.webex.com and login using your org admin credentials.
 Then click on "Documentation". 
 
+![img.png](img.png)
+
 On the left hand side you have the list of APIs. Click on "Full API Reference" and then on any of the APIs. On the API page, right hand side, copy the "Bearer".
 This is a limited-duration access token that you can paste in the "credentials" file. After 12 hours this token is no longer valid and you have to grab a new one from the same web page.
 A full OAuth flow will automatically renew access token before they expire, but this is out of the scope of these scripts.
