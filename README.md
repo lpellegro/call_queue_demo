@@ -9,6 +9,8 @@ Once you have an org, you can go to developer.webex.com and login using your org
 Then click on "Documentation".
 On the left hand side you have the list of APIs. Click on "Full API Reference" and then on any of the APIs. On the API page, right hand side, copy the "Bearer".
 
+https://github.com/lpellegro/call_queue_demo/blob/master/images/bearer.png
+
 This is a limited-duration access token that you can paste in the "credentials" file. 
 After 12 hours this token is no longer valid and you have to grab a new one from the same web page.
 A full OAuth flow will automatically renew access token before they expire, but this is out of the scope of these scripts.
