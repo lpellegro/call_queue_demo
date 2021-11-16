@@ -1,7 +1,7 @@
 INSTRUCTIONS
 
 These scripts create call queues in Webex Calling and assign agents to the queues based on provisioning details included in a .xlsx spreadsheet.
-
+If the agent doesn't have an extension assigned the script takes the last 4 digits from the Telephone Number attribute synchronized via Directory Connector
 If you don't a Webex org you can use dcloud.cisco.com to setup a Webex Calling lab. 
 Just log into dcloud and look for "Cisco Webex Calling v3" lab.
 
