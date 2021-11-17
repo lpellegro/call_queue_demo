@@ -7,6 +7,7 @@ list_url = 'https://webexapis.com/v1/telephony/config/queues'
 delete_url_portion = 'https://webexapis.com/v1/telephony/config/locations/'
 bearer = credentials['bearer']
 headers = {'Authorization': 'Bearer ' + bearer}
+filename = credentials['filename']
 
 response = requests.get(list_url, headers=headers)
 response = response.json()
@@ -44,7 +45,7 @@ location_id_url = 'https://webexapis.com/v1/locations'
 headers = {'Authorization': 'Bearer ' + bearer}
 
 
-workbook = load_workbook(filename = '/Users/lpellegr/WxC_API/Agent_list.xlsx')
+workbook = load_workbook(filename = filename)
 sheet = workbook.active
 max_rows_per_column = []
 col_names = []
