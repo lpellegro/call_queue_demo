@@ -58,22 +58,35 @@ for i in range(queue_number):
     agent_id_list = []
     response = requests.get(location_id_url, headers=headers)
     response = response.json()
-    location_id = response['items'] [0]['id']
+    print("get_location_response is:", response)
+    location_id = response['items'][0]['id']
     print(location_id)
     for j in range(n_agents):
        email = agent_list[j]
        #get user ID
        response = requests.get(user_details_url+email, headers=headers)
        response = response.json()
-       print(response)
+       print("user's details are:", response)
        agent_id = response['items'][0]['id']
        agent_licenses = response['items'][0]['licenses']
        if wxc_license not in agent_licenses:
            data = response['items'][0]
            agent_licenses.append(wxc_license)
-           phoneNumber= response['items'][0]['phoneNumbers'][0]['value']
-           extension = phoneNumber[-4:]
-           del data['phoneNumbers']
+           if 'phoneNumbers' not in data.keys():
+               print("phoneNumbers not in response")
+               extension = current_extension
+               current_extension += 1
+               print("considering extension:", extension)
+           else:
+               phoneNumber= response['items'][0]['phoneNumbers'][0]['value']
+               print("phoneNumbers in response")
+               extension = phoneNumber[-4:]
+               print("considering extension:", extension)
+               del data['phoneNumbers']
+
+           if 'displayName' not in data.keys():
+               print("displayName not in response")
+               data['displayName'] = ""
            data['licenses'] = agent_licenses
            data['extension'] = extension
            data['locationId'] = location_id
@@ -92,12 +105,12 @@ for i in range(queue_number):
     #create a queue and add users to the queue
 
     create_queue_url = 'https://webexapis.com/v1/telephony/config/locations/'+ location_id + '/queues'
-    extension = 1099 + i
-    print(extension)
+    queue_extension = credentials["queue_starting_number"] + i
+    print("creating queue with extension:", queue_extension)
     data = json.dumps (
      {
         "name": queue_name,
-        "extension": extension,
+        "extension": queue_extension,
         "callPolicies": {
             "policy": "UNIFORM",
             "callBounce": {
