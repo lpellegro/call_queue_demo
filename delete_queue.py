@@ -9,7 +9,6 @@ bearer = credentials['bearer']
 headers = {'Authorization': 'Bearer ' + bearer}
 filename = credentials['filename']
 
-#remove licenses
 license_url = 'https://webexapis.com/v1/licenses'
 
 response = requests.get(license_url, headers=headers)
@@ -52,7 +51,7 @@ print(array)
 
 queue_number = len(array)
 for i in range(queue_number):
-
+    #delete the queue
     queue_name = array[i][0]
     response = requests.get(list_url+queue_name, headers=headers)
     response = response.json()
@@ -70,7 +69,7 @@ for i in range(queue_number):
 
     for j in range(n_agents):
        email = agent_list[j]
-       #get user ID
+       #get user ID and remove WxC licenses
        response = requests.get(user_details_url+email, headers=headers)
        response = response.json()
        print(response)
