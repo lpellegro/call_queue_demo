@@ -24,4 +24,4 @@ Make sure that the Excel spreadsheet doesn't have blank rows or columns.
 Launch the script: the queues will be populated and agents assigned.
 
 IMPORTANT NOTICE:
-If you want to clean your lab, just run the delete_queue script. This script deletes all queues, not only those that have been created. It also removes the Webex Calling licenses assigned to the agents
+If you want to clean your lab, just run the delete_queue script. This script deletes all queues that have been created and removes the Webex Calling licenses previously assigned to the agents.
