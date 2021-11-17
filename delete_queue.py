@@ -3,7 +3,7 @@ import json
 from openpyxl import load_workbook
 from credentials import credentials
 
-list_url = 'https://webexapis.com/v1/telephony/config/queues'
+list_url = 'https://webexapis.com/v1/telephony/config/queues?name='
 delete_url_portion = 'https://webexapis.com/v1/telephony/config/locations/'
 bearer = credentials['bearer']
 headers = {'Authorization': 'Bearer ' + bearer}
@@ -44,7 +44,6 @@ user_details_url = 'https://webexapis.com/v1/people?email='
 location_id_url = 'https://webexapis.com/v1/locations'
 headers = {'Authorization': 'Bearer ' + bearer}
 
-
 workbook = load_workbook(filename = filename)
 sheet = workbook.active
 max_rows_per_column = []
@@ -74,6 +73,16 @@ queue_number = len(array)
 for i in range(queue_number):
 
     queue_name = array[i][0]
+    response = requests.get(list_url+queue_name, headers=headers)
+    response = response.json()
+    print(response)
+    queue_id = response['queues'][0]['id']
+    location_id = response['queues'][0]['locationId']
+    delete_url = delete_url_portion + location_id+'/queues/' + queue_id
+    print(delete_url)
+    resp = requests.delete(delete_url, headers=headers)
+    print ("delete queue answer:", resp)
+
     agent_list = array[i][1:]
     n_agents = len (agent_list)
     agent_id_list = []
@@ -92,12 +101,7 @@ for i in range(queue_number):
            if 'displayName' not in data.keys():
                print("displayName not in response")
                data['displayName'] = ""
-           #phoneNumber= response['items'][0]['phoneNumbers'][0]['value']
-           #extension = phoneNumber[-4:]
-           #del data['phoneNumbers']
            data['licenses'] = agent_licenses
-           #data['extension'] = extension
-           #data['locationId'] = location_id
            content_type_headers = headers
            content_type_headers['Content-Type'] = 'application/json'
            payload = json.dumps(data)
@@ -107,5 +111,4 @@ for i in range(queue_number):
            response = requests.put(people_url + data['id']+ '?callingData=true', data=payload, headers=content_type_headers)
            print(response)
            print('put response is: ', response.json())
-       agent_id_list.append({'id': agent_id})
-    print(agent_id_list)
+
