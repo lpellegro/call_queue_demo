@@ -89,7 +89,9 @@ for i in range(queue_number):
        if wxc_license in agent_licenses:
            agent_licenses.remove(wxc_license)
            data = response['items'][0]
-
+           if 'displayName' not in data.keys():
+               print("displayName not in response")
+               data['displayName'] = ""
            #phoneNumber= response['items'][0]['phoneNumbers'][0]['value']
            #extension = phoneNumber[-4:]
            #del data['phoneNumbers']
