@@ -9,25 +9,6 @@ bearer = credentials['bearer']
 headers = {'Authorization': 'Bearer ' + bearer}
 filename = credentials['filename']
 
-response = requests.get(list_url, headers=headers)
-response = response.json()
-
-print(response)
-
-l = len(response['queues'])
-print(l)
-
-
-for i in range(l):
-    queue_id = response['queues'][i]['id']
-    location_id = response['queues'][i]['locationId']
-    print(queue_id)
-    print(location_id)
-    delete_url = delete_url_portion + location_id+'/queues/' + queue_id
-    print(delete_url)
-    resp = requests.delete(delete_url, headers=headers)
-    print (resp)
-
 #remove licenses
 license_url = 'https://webexapis.com/v1/licenses'
 
